@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="fabric-gateway-java-2.2.0">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../fabric-gateway-java-v2/target/fabric-gateway-java-2.2.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
