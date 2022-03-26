@@ -4,15 +4,10 @@ SPDX-License-Identifier: Apache-2.0
 
 package application.java;
 
-import java.nio.file.Paths;
-import java.security.PrivateKey;
-import java.util.Properties;
-import java.util.Set;
-
-import org.hyperledger.fabric.gateway.Wallet;
-import org.hyperledger.fabric.gateway.Wallets;
 import org.hyperledger.fabric.gateway.Identities;
 import org.hyperledger.fabric.gateway.Identity;
+import org.hyperledger.fabric.gateway.Wallet;
+import org.hyperledger.fabric.gateway.Wallets;
 import org.hyperledger.fabric.gateway.X509Identity;
 import org.hyperledger.fabric.sdk.Enrollment;
 import org.hyperledger.fabric.sdk.User;
@@ -20,6 +15,11 @@ import org.hyperledger.fabric.sdk.security.CryptoSuite;
 import org.hyperledger.fabric.sdk.security.CryptoSuiteFactory;
 import org.hyperledger.fabric_ca.sdk.HFCAClient;
 import org.hyperledger.fabric_ca.sdk.RegistrationRequest;
+
+import java.nio.file.Paths;
+import java.security.PrivateKey;
+import java.util.Properties;
+import java.util.Set;
 
 public class RegisterUser {
 
@@ -88,7 +88,7 @@ public class RegisterUser {
 
 			@Override
 			public String getMspId() {
-				return "Org1MSP";
+				return "Org1";
 			}
 
 		};
@@ -99,7 +99,7 @@ public class RegisterUser {
 		registrationRequest.setEnrollmentID("appUser");
 		String enrollmentSecret = caClient.register(registrationRequest, admin);
 		Enrollment enrollment = caClient.enroll("appUser", enrollmentSecret);
-		Identity user = Identities.newX509Identity("Org1MSP", enrollment);
+		Identity user = Identities.newX509Identity("Org1", enrollment);
 		wallet.put("appUser", user);
 		System.out.println("Successfully enrolled user \"appUser\" and imported it into the wallet");
 	}

@@ -9,13 +9,14 @@
 
 package application.java;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import org.hyperledger.fabric.gateway.Contract;
 import org.hyperledger.fabric.gateway.Gateway;
 import org.hyperledger.fabric.gateway.Network;
 import org.hyperledger.fabric.gateway.Wallet;
 import org.hyperledger.fabric.gateway.Wallets;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 public class App {
@@ -42,6 +43,7 @@ public class App {
 		try {
 			EnrollAdmin.main(null);
 			RegisterUser.main(null);
+			System.out.println("certificates successfully created");
 		} catch (Exception e) {
 			System.err.println(e);
 		}
@@ -66,8 +68,12 @@ public class App {
 			System.out.println("Submit Transaction: CreateAsset asset13");
 			//CreateAsset creates an asset with ID asset13, color yellow, owner Tom, size 5 and appraisedValue of 1300
 			contract.submitTransaction("CreateAsset", "asset13", "yellow", "5", "Tom", "1300");
-//			OPT: submit transaction based on the model with backward transitions
-//			contract.submitTransactionBasedOnModel("resources/results.json", 1308927845, "Org1", "CreateAsset", "asset13", "yellow", "5", "Tom", "1300");
+
+//			This is for the experiment: submit based on the model. Make a delay for ip address that uses container for
+//			Org1/Org2. Delay shall be greater than custom waiting timeout that set up in this method.
+			
+//			contract.submitTransactionBasedOnModelWithBinaryResponse("resources/results.json", 1308927845, 10L,
+//					 "CreateAsset", "asset13", "yellow", "5", "Tom", "1300");
 
 			System.out.println("\n");
 			System.out.println("Evaluate Transaction: ReadAsset asset13");
